@@ -1,10 +1,12 @@
-import * as functions from 'firebase-functions'
-import * as express from 'express'
-import { addEntry } from './entryController'
+import * as functions from "firebase-functions";
+import * as express from "express";
+import { addEntry } from "./entryController";
 
-const app = express()
+const api = express.Router();
 
-app.get('/', (req, res) => res.status(200).send('mitjatsszunk.online api'))
-app.post('/entries', addEntry)
+api.get("/", (req, res) => res.status(200).send("mitjatsszunk.online api"));
+api.post("/entries", addEntry);
 
-exports.api = functions.https.onRequest(app)
+const app = express();
+app.use("/api", api);
+exports.api = functions.https.onRequest(app);
