@@ -22,7 +22,7 @@ export const addEntry = async (req: Request, res: Response) => {
       text
     };
 
-    entry.set(entryObject);
+    await entry.set(entryObject);
 
     res.status(200).send({
       status: "success",
