@@ -7,7 +7,7 @@ admin.initializeApp({
     projectId: functions.config().project.id,
     clientEmail: functions.config().client.email
   }),
-  databaseURL: "https://mit-jatsszunk-online.firebaseio.com"
+  databaseURL: functions.config().database.url,
 });
 
 const db = admin.firestore();
