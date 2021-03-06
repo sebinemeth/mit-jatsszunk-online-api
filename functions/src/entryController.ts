@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { db } from "./config/firebase";
+import { db, functions } from "./config/firebase";
 
 type EntryType = {
   title: string;
@@ -8,6 +8,7 @@ type EntryType = {
 };
 
 type Request = {
+  headers: any;
   body: EntryType;
   params: { entryId: string };
 };
@@ -35,6 +36,8 @@ export const addEntry = async (req: Request, res: Response) => {
 };
 
 export const getAllEntries = async (req: Request, res: Response) => {
+  functions.logger.info("getAllEntries");
+  console.log(req.headers);
   try {
     const allEntries: EntryType[] = [];
     const querySnapshot = await db.collection("entries").get();
