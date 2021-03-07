@@ -1,5 +1,6 @@
 import * as functions from "firebase-functions";
 import * as express from "express";
+const cors = require("cors");
 import {
   addEntry,
   getAllEntries,
@@ -9,6 +10,11 @@ import {
 import * as users from "./userController";
 
 const api = express.Router();
+api.use(
+  cors({
+    "Access-Control-Allow-Origin": "*"
+  })
+);
 
 api.get("/", (req, res) => res.status(200).send("mitjatsszunk.online api"));
 api.post("/entries", addEntry);
