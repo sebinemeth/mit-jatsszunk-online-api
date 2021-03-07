@@ -6,6 +6,7 @@ import {
   updateEntry,
   deleteEntry
 } from "./entryController";
+import * as users from "./userController";
 
 const api = express.Router();
 
@@ -14,6 +15,8 @@ api.post("/entries", addEntry);
 api.get("/entries", getAllEntries);
 api.patch("/entries/:entryId", updateEntry);
 api.delete("/entries/:entryId", deleteEntry);
+
+api.get("/users/me", users.getMe);
 
 const app = express();
 app.use("/api", api);

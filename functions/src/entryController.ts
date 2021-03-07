@@ -1,16 +1,11 @@
-import { Response } from "express";
+import { Request, Response } from "express";
+import { getUser } from "./auth";
 import { db, functions } from "./config/firebase";
 
 type EntryType = {
   title: string;
   text: string;
   coverImageUrl: string;
-};
-
-type Request = {
-  headers: any;
-  body: EntryType;
-  params: { entryId: string };
 };
 
 export const addEntry = async (req: Request, res: Response) => {
@@ -38,6 +33,8 @@ export const addEntry = async (req: Request, res: Response) => {
 export const getAllEntries = async (req: Request, res: Response) => {
   functions.logger.info("getAllEntries");
   console.log(req.headers);
+  const user = await getUser(req);
+  console.log(user);
   try {
     const allEntries: EntryType[] = [];
     const querySnapshot = await db.collection("entries").get();
