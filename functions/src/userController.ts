@@ -73,8 +73,7 @@ export const updateUser = async (req: Request, res: Response) => {
   try {
     if (
       !currentUser ||
-      currentUser.role !== UserRole.ADMIN ||
-      currentUser.uid !== userId
+      (currentUser.role !== UserRole.ADMIN && currentUser.uid !== userId)
     )
       return res.status(403).send();
 
