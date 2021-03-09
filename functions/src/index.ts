@@ -19,6 +19,8 @@ api.patch("/entries/:entryId", updateEntry);
 api.delete("/entries/:entryId", deleteEntry);
 
 api.get("/users/me", users.getMe);
+api.get("/users", users.getAllUsers);
+api.patch("/users/:userId", users.updateUser);
 
 const app = express();
 app.use("/api", api);

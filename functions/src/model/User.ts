@@ -11,8 +11,15 @@ export class UserFactory {
       email: decodedIdToken.email as string,
       emailVerified: decodedIdToken.email_verified as boolean,
       picture: decodedIdToken.picture,
-      name: decodedIdToken.name
+      name: decodedIdToken.name,
+      role: UserRole.USER
     } as User);
+}
+
+export enum UserRole {
+  ADMIN = "admin",
+  MODERATOR = "moderator",
+  USER = "user"
 }
 
 export type User = {
@@ -22,4 +29,5 @@ export type User = {
   emailVerified: boolean;
   picture?: string;
   name?: string;
+  role: UserRole;
 };
