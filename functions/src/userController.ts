@@ -29,7 +29,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
     let currentUser: User | null = null;
     try {
       const decodedIdToken = await decodeToken(req);
-      currentUser = (await registerUserIfNotPresent(decodedIdToken)) as User;
+      currentUser = await registerUserIfNotPresent(decodedIdToken);
     } catch (error) {}
 
     const allUsers: User[] = [];
