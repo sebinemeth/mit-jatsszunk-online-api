@@ -12,6 +12,8 @@ export const getAllGames = async (req: Request, res: Response) => {
       currentUser = await registerUserIfNotPresent(decodedIdToken);
     } catch (error) {}
 
+    console.log(currentUser);
+
     const allGames: Game[] = [];
     const querySnapshot = await db.collection("games").get();
     querySnapshot.forEach((doc: any) => {
